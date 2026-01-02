@@ -28,6 +28,14 @@ use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
+//ergänzt für Authentifizierung
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\Middleware\AuthenticationMiddleware;
+use Psr\Http\Message\ServerRequestInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+
+
 /**
  * Application setup class.
  *
@@ -36,7 +44,7 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  *
  * @extends \Cake\Http\BaseApplication<\App\Application>
  */
-class Application extends BaseApplication
+class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -47,6 +55,8 @@ class Application extends BaseApplication
     {
         // Call parent to load bootstrap from files.
         parent::bootstrap();
+
+        $this->addPlugin('Authentication');
 
         if (PHP_SAPI !== 'cli') {
             // The bake plugin requires fallback table classes to work properly
@@ -87,7 +97,8 @@ class Application extends BaseApplication
             // https://book.cakephp.org/5/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
-            ]));
+            ]))
+            ->add(new AuthenticationMiddleware($this));
 
         return $middlewareQueue;
     }
@@ -102,4 +113,48 @@ class Application extends BaseApplication
     public function services(ContainerInterface $container): void
     {
     }
+    /**
+     * Returns the authentication service to be used in the application.
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request The request.
+     * @return \Authentication\AuthenticationServiceInterface
+     */
+    public function getAuthenticationService(
+        ServerRequestInterface $request
+    ): AuthenticationServiceInterface {
+        $service = new AuthenticationService();
+
+        // erst lokale Authentifizierung aus db dann ldap
+        $service->loadIdentifier('Authentication.Password', [
+            'fields' => [
+                'username' => 'username',
+                'password' => 'password',
+            ],
+            'resolver' => [
+                'className' => 'Authentication.Orm',
+                'userModel' => 'Users',
+            ],
+        ]);
+
+         // LDAP (custom Identifier)
+        $service->loadIdentifier(
+            \App\Authentication\Identifier\LdapIdentifier::class,
+            [
+                'fields' => [
+                    'username' => 'username',
+                    'password' => 'password',
+                ],
+            'host' => 'ldap://localhost',
+            'baseDn' => 'ou=people,dc=local,dc=dev',
+            ]
+        );
+
+        $service->loadAuthenticator('Authentication.Session');
+        $service->loadAuthenticator('Authentication.Form', [
+            'loginUrl' => '/login',
+        ]);
+
+        return $service;
+    }
+
 }
