@@ -1,0 +1,99 @@
+
+div {
+  margin-top: 15px;
+}
+h1 {
+  color: black;
+	font-size: 12pt;
+  margin-top: 18pt;
+}
+#idAusdruck {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+	display: none; /*wird ueber js sichtbar gesetzt */
+	background-color: #D0EBB2;
+  border:    solid 2px #181D1B;
+}
+
+#idNeuAntrag {
+	padding-left: 10px;
+	padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 30px;
+  margin-right: auto;
+	display: none; /*wird ueber js sichtbar gesetzt */
+	background-color: #D0EBB2;
+  border:    solid 2px #181D1B;
+}
+
+#idAusdruck > a{
+}
+#idSpanPersonalLink {
+}
+#idH1Aufnahme {
+  font-size: 120%;
+  font-weight: bold; 
+}
+#idUnterschriften{
+	display: block;
+}
+#idUnterschriften h1{
+ 	margin-bottom: 2cm;
+}
+#idTabUnter{
+	table-layout: fixed;
+  padding-right: 10%;
+  padding-left:  5%;
+}
+
+#idTabUnter tr td{
+  border-style: none ;
+  background-color: white; 
+}
+
+#idTabUnter tr td.bTop{
+  border-top: 1pt solid;
+	text-align: center;
+}
+
+
+ul li {
+	list-style: circle;
+}
+
+#idFoerderDetail {
+  display: grid; 
+  grid-template-columns: auto auto;
+  grid-row-gap: 0px;
+  width: 30em;
+  margin-bottom: 2em; 
+  margin-top: 0.5em;
+}
+#idFoerderDetail div {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+#idFoerderDetail div.framed {
+  border: 1px solid black; 
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+}
+#idFoerderDetail div.framed span{
+  position: relative;
+  top: -0.3em;
+}
+#idHrParaphe {
+  width: 20em;
+  display: inline-block;
+  position: relative;
+  top: 1em; 
+}
+#idParaphe {
+  margin-left: 23em; 
+}

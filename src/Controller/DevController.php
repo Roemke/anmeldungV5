@@ -32,6 +32,9 @@ final class DevController extends AppController
 
         debug($staats);
 
+        $antrag = $this->fetchTable('Antrags')->newEmptyEntity();
+        debug($antrag->getErrors());
+        
         die;
     }
 }

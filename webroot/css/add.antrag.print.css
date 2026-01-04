@@ -1,0 +1,29 @@
+
+#header, #footer, div .submit {
+	display: none;
+}
+h1,legend{
+  font-size: 12pt;
+  color: black;
+}
+
+body {
+	font-size: 10pt;
+
+}
+
+div.antrag{
+  width: 100%;
+  border-style: none;
+}
+fieldset{
+  border-style:none;
+}
+
+
+#AntragAddForm {
+	border-style:		none;
+}
+
+
+

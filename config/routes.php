@@ -53,6 +53,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
+        $builder->connect('/', ['controller' => 'Antrags', 'action' => 'add']);
+        $builder->connect('/antrag/erfolg', ['controller' => 'Antrags', 'action' => 'success']);
+
         $builder->connect('/dev', ['controller' => 'Dev', 'action' => 'index']);
 
         /*

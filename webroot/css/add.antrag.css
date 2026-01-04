@@ -1,0 +1,160 @@
+@charset "utf-8";
+/**
+ *
+ * angepasste css fuer den Antrag
+ */
+
+ /* elemente aus dem alten cake css */
+ fieldset legend {
+    color: #009;
+    font-size: 110%;
+    font-weight: bold;
+  }
+
+.antrag ul {
+    list-style-position: outside;
+    padding-left: 1.2em;
+}
+.antrag li {
+    padding-left: 0.4em;
+    text-indent: 0;
+}
+.antrag  {
+
+    margin-bottom: 0.4em;
+    font-size: 1.2em;
+}
+
+
+#idDivFoerder {
+	margin-top					: 0.5em;
+	padding						: 1ex 3ex;
+    border						: 1px solid grey;
+  /*width						: 440px;*/
+	display						: inline-block;
+}
+
+#idDivFoerder.invisible {
+	display					: none;
+}
+
+li.invisible {
+	display					: none;
+}
+
+
+/*#idDivFoerder input+label { \*/
+ /*adjacent sibling + means label directly behind input*/
+ /* noe brauchen wir hier nicht */
+
+/* die linie links ist ja nett aber ohne actions kann sie weiter
+   nach links */
+
+#idAntragAusland.invisible {
+        display                                 : none;
+}
+
+div.antrag.form
+{
+	width: 95%;
+}
+
+div.antrag.form select {
+  margin:		0px 0px 0px 5px;
+  font-size: 0.9em
+}
+
+div.antrag.form .radio.required label:after {
+	content: ' ';
+	display:inline;
+}
+
+div.antrag.form .radio.required legend:after {
+	color: #e32;
+    content: '* ';
+	display:inline;
+}
+
+div.antrag.form label
+{
+	display: inline;
+}
+
+#AntragSchulformId{
+  width:			600px;
+}
+#AntragStaats{
+  width:			250px;
+}
+
+/* der input Teilzeit */
+div.antrag.form .radio label
+{
+	display: block;
+}
+
+/* fieldsets */
+.clFieldSetAlign {
+  display: 		  	inline;
+  vertical-align: top;
+  /*border:				1px solid;*/
+}
+
+#idAntragBeigefuegt ul {
+	margin-top:	0.5em;
+	margin-bottom: 1em;
+}
+
+#addAntragIntroText {
+	margin-bottom: 0em;
+}
+#idAntragBeigefuegt {
+	margin-top: 0em;
+}
+#idAntragBeigefuegt p {
+	margin-top: 0em;
+	margin-bottom: 0.5em;
+}
+
+address {
+display: inline-block;
+}
+p.inlineBlock {
+display: inline-block;
+}
+
+
+#idContainerIntro {
+	margin-bottom: 0em;
+	padding-bottom: 0.5em;
+}
+
+/* Erzieherfelder */
+#idSpanErzieher1Title , #idSpanErzieher2Title {
+    color								:   #100020;
+  }
+
+  #idDivErzieher1 , #idDivErzieher2 {
+      padding						: 1ex 3ex;
+      margin-left					: 2ex	;
+      border						: 1px solid grey;
+      width						: 28em;
+      display						: inline-block;
+  }
+
+  .btn-submit {
+    background-color: #2e7d32; /* sattes Grün */
+    color: #ffffff;
+    border: none;
+    padding: 0px 24px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 1em;
+    height: 2em;
+    text-transform: none;
+}
+
+.btn-submit:hover {
+    background-color: #256628;
+}

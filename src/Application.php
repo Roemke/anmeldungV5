@@ -121,40 +121,46 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(
         ServerRequestInterface $request
-    ): AuthenticationServiceInterface {
-        $service = new AuthenticationService();
+        ): AuthenticationServiceInterface {
 
-        // erst lokale Authentifizierung aus db dann ldap
-        $service->loadIdentifier('Authentication.Password', [
-            'fields' => [
-                'username' => 'username',
-                'password' => 'password',
-            ],
-            'resolver' => [
-                'className' => 'Authentication.Orm',
-                'userModel' => 'Users',
-            ],
+        $service = new AuthenticationService([
+            'unauthenticatedRedirect' => '/login',
+            'queryParam' => 'redirect',
         ]);
 
-         // LDAP (custom Identifier)
-        $service->loadIdentifier(
-            \App\Authentication\Identifier\LdapIdentifier::class,
-            [
+        // IDENTIFIERS (Reihenfolge ist wichtig!)
+        $service->setConfig('identifiers', [
+            // 1. Lokale DB-User (Admin)
+            'Authentication.Password' => [
                 'fields' => [
                     'username' => 'username',
                     'password' => 'password',
                 ],
-            'host' => 'ldap://localhost',
-            'baseDn' => 'ou=people,dc=local,dc=dev',
-            ]
-        );
+                'resolver' => [
+                    'className' => 'Authentication.Orm',
+                    'userModel' => 'Users',
+                ],
+            ],
 
-        $service->loadAuthenticator('Authentication.Session');
-        $service->loadAuthenticator('Authentication.Form', [
-            'loginUrl' => '/login',
+            // 2. LDAP (Custom Identifier)
+            \App\Authentication\Identifier\LdapIdentifier::class => [
+                'fields' => [
+                    'username' => 'username',
+                    'password' => 'password',
+                ],
+                'host' => 'ldap://localhost',
+                'baseDn' => 'ou=people,dc=local,dc=dev',
+            ],
+        ]);
+
+        // AUTHENTICATORS
+        $service->setConfig('authenticators', [
+            'Authentication.Session',
+            'Authentication.Form' => [
+                'loginUrl' => '/login',
+            ],
         ]);
 
         return $service;
     }
-
 }
