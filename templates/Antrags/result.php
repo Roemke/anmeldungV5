@@ -76,14 +76,13 @@ $this->Html->script('print_button', ['block' => true]);
     <?php endforeach; ?>
   </div>
 
-  <p>Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und / oder die Beratungs-Lehrkräfte.</p>
-
-  <div>
-    Inklusionsberatung hat stattgefunden
-    <hr id="idHrParaphe">
-  </div>
-
-  <div id="idParaphe">(Paraphe)</div>
+<p>Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und / oder die Beratungs-Lehrkräfte.</p>
+<div id="inklBeratung">
+    <div>
+        Inklusionsberatung hat stattgefunden
+    </div>
+    <div id="idParaphe">(Paraphe)</div>
+</div>
 </div>
 <?php endif; ?>
 <div id="idDatenErzieher" class="noBreak">
@@ -99,17 +98,15 @@ $this->Html->script('print_button', ['block' => true]);
 
   Telefon:
   <?= h($antrag->e1telefon) ?>
-</p>
 
 <?php if ($antrag->e2name): ?>
-<p>
+<br>
   Name:
   <?= h($antrag->e2vorname . ' ' . $antrag->e2name) ?><br>
   Telefon:
   <?= h($antrag->e2telefon) ?>
-</p>
 <?php endif; ?>
-
+</p>
 
 <?php if ($antrag->abschluss): ?>
 <div id="idAnmerkungen">
@@ -147,13 +144,9 @@ $this->Html->script('print_button', ['block' => true]);
 <div id="idUnterschriften" class="noBreak">
 <h1>Unterschriften</h1>
 
-<table id="idTabUnter">
-  <tr>
-    <td class="bTop">Datum, Antragsteller(in)</td>
-    <td></td>
-    <td class="bTop">Datum, Erziehungsberechtigte(r)</td>
-  </tr>
-</table>
+<div id="idUnterschriftFeld">
+    <div >Datum, Antragsteller(in)</div>
+    <div>Datum, Erziehungsberechtigte(r)</div>
 </div>
 
 </div>

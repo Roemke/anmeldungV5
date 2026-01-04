@@ -34,11 +34,12 @@ class AntragsController extends AppController
         if (!$session->check('antrag_token')) {
             $session->write('antrag_token', Security::randomString(32));
         }
-
+        $antragToken = $session->read('antrag_token');
         $antrag = $this->fetchTable('Antrags')->newEmptyEntity();
         // Lookup-Daten für das Formular
         $this->set([
             'antrag' => $antrag,
+            'antragToken' => $antragToken,
             'schulforms' => $this->fetchTable('Schulforms')->find('forSelect'),
             'lastSchoolForms' => $this->fetchTable('LastSchulForms')->find('forSelect'),
             'konfessions' => $this->fetchTable('Konfessions')->find('forSelect'),
@@ -67,24 +68,50 @@ class AntragsController extends AppController
                 ]);
             }
         }
+
+
     }
 
-      //ergenisanzeige nach Antragstellung
-      public function result(int $id)
-      {
-          $this->viewBuilder()->setLayout('public');
+    //ergenisanzeige nach Antragstellung
+    public function result(int $id)
+    {
+        $this->viewBuilder()->setLayout('public');
 
-          $antrag = $this->fetchTable('Antrags')->get($id, [
-              'contain' => [
-                  'Schulforms',
-                  'Staats',
-                  'Konfessions',
-                  'LastSchulForms',
-              ],
-          ]);
+        $antrag = $this->fetchTable('Antrags')->get($id, [
+            'contain' => [
+                'Schulforms',
+                'Staats',
+                'Konfessions',
+                'LastSchulForms',
+            ],
+        ]);
 
-          $this->set(compact('antrag'));
-      }
+        $this->set(compact('antrag'));
+    }
+
+    public function print(int $id)
+    {
+        // Admin: Login erforderlich (keine Ausnahme in beforeFilter!)
+
+        $this->viewBuilder()
+            ->setLayout('public')   // identisch zum Public-Result
+            ->setTemplate('result'); // exakt dieselbe View
+
+        $antrag = $this->Antrags->get($id, [
+            'contain' => [
+                'Schulforms',
+                'Staats',
+                'Konfessions',
+                'LastSchulForms',
+            ],
+        ]);
+
+
+        $this->set(compact('antrag'));
+    }
+
+
+    //folgendes per cake bake generiert, evtl. anpassen
     /**
      * Index method
      *
@@ -92,6 +119,7 @@ class AntragsController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('admin');
         $query = $this->Antrags->find()
             ->contain(['Schulforms', 'LastSchulForms', 'Staats', 'Konfessions']);
         $antrags = $this->paginate($query);

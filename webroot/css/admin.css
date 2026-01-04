@@ -1,0 +1,41 @@
+.main-header {
+    padding: 20px 20px 10px 20px;
+    background-color: rgb(100,128,165);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.main-header h1 {
+    font-size: 1.2em;
+    /*background: #000090 url('../img/cake.icon.png') no-repeat left;
+    background: url('../img/cake.icon.png') no-repeat left;*/
+    color: #fff;
+    padding: 0px 10px;
+}
+.main-header img {
+    height: 40px;
+    margin-left: 20px;
+}
+footer.site-footer {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9em;
+    color: #555;
+}
+footer.site-footer > * {
+    color: #555;
+    text-decoration: none;
+    margin: 0px 0px;
+    min-width: 0px;
+}
+footer.site-footer > div {
+    margin: 0px 15px;
+}
+.admin .container,
+.admin-container {
+    max-width: 95%;
+    width: 95%;
+}

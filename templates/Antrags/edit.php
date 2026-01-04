@@ -26,10 +26,7 @@
             <fieldset>
                 <legend><?= __('Edit Antrag') ?></legend>
                 <?php
-                    echo $this->Form->control('downloads');
-                    echo $this->Form->control('lastDownload', ['empty' => true]);
                     echo $this->Form->control('schulform_id', ['options' => $schulforms]);
-                    echo $this->Form->control('fstFormBevorzugt');
                     echo $this->Form->control('name');
                     echo $this->Form->control('vorname');
                     echo $this->Form->control('geschlecht');
@@ -63,7 +60,7 @@
                     echo $this->Form->control('e2telefon');
                     echo $this->Form->control('letzeschule');
                     echo $this->Form->control('last_schul_form_id', ['options' => $lastSchulForms]);
-                    echo $this->Form->control('abschluss');
+                    echo $this->Form->control('abschluss',['label'=>'sonstige Anmerkungen']);
                     echo $this->Form->control('berufsausbildung_abgeschlossen');
                     echo $this->Form->control('foerderBedarf');
                     echo $this->Form->control('foeASS');
@@ -72,7 +69,7 @@
                     echo $this->Form->control('foeSE');
                     echo $this->Form->control('foeKME');
                     echo $this->Form->control('foeLES');
-                    echo $this->Form->control('aufmerksam');
+                    echo $this->Form->control('aufmerksam',['label'=>'Beratung']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
