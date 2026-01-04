@@ -24,11 +24,12 @@ final class AntragsController extends AppController
         if (!$session->check('antrag_token')) {
             $session->write('antrag_token', Security::randomString(32));
         }
-
+        $antragToken = $session->read('antrag_token');
         $antrag = $this->fetchTable('Antrags')->newEmptyEntity();
         // Lookup-Daten für das Formular
         $this->set([
             'antrag' => $antrag,
+            'antragToken' => $antragToken,
             'schulforms' => $this->fetchTable('Schulforms')->find('forSelect'),
             'lastSchoolForms' => $this->fetchTable('LastSchulForms')->find('forSelect'),
             'konfessions' => $this->fetchTable('Konfessions')->find('forSelect'),
