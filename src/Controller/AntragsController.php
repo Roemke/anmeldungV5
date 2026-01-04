@@ -5,9 +5,17 @@ namespace App\Controller;
 
 use Cake\Event\EventInterface;
 use Cake\Utility\Security;
+use App\Service\SchildExportService;
+use Cake\Http\Response;
 
-final class AntragsController extends AppController
+/**
+ * Antrags Controller
+ *
+ * @property \App\Model\Table\AntragsTable $Antrags
+ */
+class AntragsController extends AppController
 {
+    //zugang ohne login erlauben, Antrag einreichen
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
@@ -16,6 +24,11 @@ final class AntragsController extends AppController
         $this->Authentication->addUnauthenticatedActions(['add','result']);
     }
 
+    /**
+     * Add method, diese ist von mir verändert
+     *
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     */
     public function add()
     {
         $this->viewBuilder()->setLayout('public');
@@ -79,8 +92,124 @@ final class AntragsController extends AppController
         $this->set(compact('antrag'));
     }
 
-    public function success() //not used anymore
+    public function print(int $id)
     {
-        // einfache Bestätigungsseite
+        // Admin: Login erforderlich (keine Ausnahme in beforeFilter!)
+
+        $this->viewBuilder()
+            ->setLayout('public')   // identisch zum Public-Result
+            ->setTemplate('result'); // exakt dieselbe View
+
+        $antrag = $this->Antrags->get($id, [
+            'contain' => [
+                'Schulforms',
+                'Staats',
+                'Konfessions',
+                'LastSchulForms',
+            ],
+        ]);
+
+
+        $this->set(compact('antrag'));
     }
+
+
+    //folgendes per cake bake generiert, evtl. anpassen
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function index()
+    {
+
+        $query = $this->Antrags->find()
+            ->contain(['Schulforms', 'LastSchulForms', 'Staats', 'Konfessions']);
+        $antrags = $this->paginate($query);
+
+        $this->set(compact('antrags'));
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Antrag id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $antrag = $this->Antrags->get($id, contain: ['Schulforms', 'LastSchulForms', 'Staats', 'Konfessions']);
+        $this->set(compact('antrag'));
+    }
+
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Antrag id.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $antrag = $this->Antrags->get($id, contain: []);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $antrag = $this->Antrags->patchEntity($antrag, $this->request->getData());
+            if ($this->Antrags->save($antrag)) {
+                $this->Flash->success(__('The antrag has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The antrag could not be saved. Please, try again.'));
+        }
+        $schulforms = $this->Antrags->Schulforms->find('list', limit: 200)->all();
+        $lastSchulForms = $this->Antrags->LastSchulForms->find('list', limit: 200)->all();
+        $staats = $this->Antrags->Staats->find('list', limit: 200)->all();
+        $konfessions = $this->Antrags->Konfessions->find('list', limit: 200)->all();
+        $this->set(compact('antrag', 'schulforms', 'lastSchulForms', 'staats', 'konfessions'));
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Antrag id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $antrag = $this->Antrags->get($id);
+        if ($this->Antrags->delete($antrag)) {
+            $this->Flash->success(__('The antrag has been deleted.'));
+        } else {
+            $this->Flash->error(__('The antrag could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+
+    public function export(string $mode): Response
+    {
+        $this->request->allowMethod(['get']);
+
+        $service = new SchildExportService($this->fetchTable('Antrags'));
+
+        // ZIP bauen (enthält die 4 .dat Dateien in Windows-1252)
+        $zipBinary = $service->buildZip($mode);
+
+        // Daten als "gedownloadet" markieren (downloads++, lastDownload=now)
+        $service->markDownloaded($mode);
+
+        $filename = $mode === 'new'
+            ? 'schild_export_new.zip'
+            : 'schild_export_all.zip';
+
+        return $this->response
+            ->withType('application/zip')
+            ->withHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->withStringBody($zipBinary);
+    }
+
 }

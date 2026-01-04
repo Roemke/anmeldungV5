@@ -41,6 +41,10 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     background: var(--color-main-bg);
+ /* doch mal eine gesamt-änderung */
+        font-variant-numeric: lining-nums;
+        font-feature-settings: "lnum";
+
 }
 
 .top-nav-links,

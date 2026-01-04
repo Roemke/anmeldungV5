@@ -1,0 +1,58 @@
+@media print {
+
+    /* Grundlayout */
+    body {
+      font-size: 10pt;
+      line-height: 1.2;
+      margin-top: 10mm;
+    }
+
+    /* Alles, was nicht gedruckt werden soll */
+    .noPrint,
+    nav,
+    footer, header, #idAntragSaved {
+      display: none !important;
+    }
+
+    /* Überschriften enger */
+    h1, h2, h3 {
+      margin: 6px 0 4px 0;
+    }
+
+    /* Absätze enger */
+    /* nein, hatte in result.antrag.css zu viel gespielt
+    p {
+      margin: 4px 0;
+    } */
+
+
+    /* Listen kompakt */
+    ul {
+      margin: 4px 0 6px 14px;
+      padding: 0;
+    }
+
+    li {
+      margin: 2px 0;
+    }
+
+    /* Tabellen */
+    table {
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+
+    td, th {
+      padding: 2px 4px;
+    }
+
+    /* Seitenumbruch-Kontrolle */
+    .noBreak {
+      page-break-inside: avoid;
+    }
+
+    /* Seite maximal nutzen */
+    @page {
+      margin: 12mm;
+    }
+  }

@@ -14,8 +14,7 @@ h1 {
   padding-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
-	display: none; /*wird ueber js sichtbar gesetzt */
-	background-color: #D0EBB2;
+  background-color: #D0EBB2;
   border:    solid 2px #181D1B;
 }
 
@@ -31,47 +30,38 @@ h1 {
   border:    solid 2px #181D1B;
 }
 
-#idAusdruck > a{
-}
-#idSpanPersonalLink {
-}
+
 #idH1Aufnahme {
   font-size: 120%;
-  font-weight: bold; 
+  font-weight: bold;
 }
 #idUnterschriften{
 	display: block;
+    margin-top: 2em;
 }
 #idUnterschriften h1{
- 	margin-bottom: 2cm;
-}
-#idTabUnter{
-	table-layout: fixed;
-  padding-right: 10%;
-  padding-left:  5%;
+ 	margin-bottom: 1cm;
 }
 
-#idTabUnter tr td{
-  border-style: none ;
-  background-color: white; 
+#idUnterschriftFeld{
+    display: flex;
+    justify-content: space-evenly;
 }
-
-#idTabUnter tr td.bTop{
-  border-top: 1pt solid;
-	text-align: center;
+#idUnterschriftFeld div{
+    border-top: 1pt solid black;
+    text-align: center;
+    width: 16em;
 }
-
-
 ul li {
 	list-style: circle;
 }
 
 #idFoerderDetail {
-  display: grid; 
+  display: grid;
   grid-template-columns: auto auto;
   grid-row-gap: 0px;
   width: 30em;
-  margin-bottom: 2em; 
+  margin-bottom: 0.5em;
   margin-top: 0.5em;
 }
 #idFoerderDetail div {
@@ -79,7 +69,7 @@ ul li {
   margin-bottom: 0px;
 }
 #idFoerderDetail div.framed {
-  border: 1px solid black; 
+  border: 1px solid black;
   width: 1em;
   height: 1em;
   padding-left: 0.2em;
@@ -88,12 +78,18 @@ ul li {
   position: relative;
   top: -0.3em;
 }
-#idHrParaphe {
-  width: 20em;
-  display: inline-block;
-  position: relative;
-  top: 1em; 
+#inklBeratung {
+    margin-top: 0px;
+    display:flex;
+    padding: 0;
+    justify-content: flex-start;
+}
+#inklBeratung div:first-child {
+    margin-top: -1em;
 }
 #idParaphe {
-  margin-left: 23em; 
+  border-top: 1pt solid black;
+  margin-left: 2em;
+  width: 10em;
+  text-align: center;
 }

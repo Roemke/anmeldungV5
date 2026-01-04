@@ -8,3 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const printLink = document.querySelector('#idAusdruck a');
+    const neuAntrag = document.getElementById('idNeuAntrag');
+
+    if (printLink && neuAntrag) {
+      printLink.addEventListener('click', e => {
+        e.preventDefault();
+
+        // "Neuer Antrag" einblenden
+        neuAntrag.style.display = 'inline';
+
+        window.print();
+      });
+    }
+  });
