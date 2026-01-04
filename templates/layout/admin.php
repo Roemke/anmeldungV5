@@ -36,6 +36,26 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <h1>Online Anmeldung &ndash; Glasfachschule</h1>
         <?=  $this->Html->image('230905_Wort-Bild-Marke_GFS_invertiert.png',
             ['alt' => 'Logo Glasfachschule NRW',]) ?>
+
+    </header>
+    <header class="admin-header">
+        <nav class="admin-nav">
+            <ul class="admin-menu">
+                <li><?= $this->Html->link('Anträge', ['controller' => 'Antrags', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link('Schulformen', ['controller' => 'Schulforms', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link('Konfessionen', ['controller' => 'Konfessions', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link('Staatsangehörigkeiten', ['controller' => 'Staats', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link('Letzte Schulformen', ['controller' => 'LastSchulForms', 'action' => 'index']) ?></li>
+            </ul>
+
+            <div class="admin-user">
+                <?= $this->Form->postLink(
+                    'Logout',
+                    ['controller' => 'Users', 'action' => 'logout'],
+                    ['class' => 'logout-button']
+                ) ?>
+            </div>
+        </nav>
     </header>
     <main class="main">
         <div class="container">

@@ -119,7 +119,7 @@ class AntragsController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('admin');
+        
         $query = $this->Antrags->find()
             ->contain(['Schulforms', 'LastSchulForms', 'Staats', 'Konfessions']);
         $antrags = $this->paginate($query);

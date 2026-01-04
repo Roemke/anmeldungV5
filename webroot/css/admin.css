@@ -3,7 +3,6 @@
     background-color: rgb(100,128,165);
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 }
 .main-header h1 {
     font-size: 1.2em;
@@ -38,4 +37,49 @@ footer.site-footer > div {
 .admin-container {
     max-width: 95%;
     width: 95%;
+}
+.admin-header {
+    background: #2f3e46;
+    color: #fff;
+}
+
+.admin-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.admin-menu {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.admin-menu li a:hover {
+    text-decoration: underline;
+}
+
+.logout-button {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: #a93226;
+}
+
+.admin-content {
+    padding: 1rem;
 }
