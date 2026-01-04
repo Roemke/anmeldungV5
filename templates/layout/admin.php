@@ -42,6 +42,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <nav class="admin-nav">
             <ul class="admin-menu">
                 <li><?= $this->Html->link('Anträge', ['controller' => 'Antrags', 'action' => 'index']) ?></li>
+                <li><?= $this->Html->link('Schild (alle)',
+                ['controller' => 'Antrags', 'action' => 'export', 'all']) ?></li>
+                <li><?= $this->Html->link('Schild (neu, #DL=0)',
+                ['controller' => 'Antrags', 'action' => 'export', 'new'])
+                 ?></li>
                 <li><?= $this->Html->link('Schulformen', ['controller' => 'Schulforms', 'action' => 'index']) ?></li>
                 <li><?= $this->Html->link('Konfessionen', ['controller' => 'Konfessions', 'action' => 'index']) ?></li>
                 <li><?= $this->Html->link('Staatsangehörigkeiten', ['controller' => 'Staats', 'action' => 'index']) ?></li>

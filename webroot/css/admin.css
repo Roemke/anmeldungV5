@@ -83,3 +83,7 @@ footer.site-footer > div {
 .admin-content {
     padding: 1rem;
 }
+#myactions a {
+    font-size: 75%;
+    padding: 0pt;
+}

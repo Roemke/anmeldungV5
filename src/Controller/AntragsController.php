@@ -5,6 +5,9 @@ namespace App\Controller;
 
 use Cake\Event\EventInterface;
 use Cake\Utility\Security;
+use App\Service\SchildExportService;
+use Cake\Http\Response;
+
 /**
  * Antrags Controller
  *
@@ -119,7 +122,7 @@ class AntragsController extends AppController
      */
     public function index()
     {
-        
+
         $query = $this->Antrags->find()
             ->contain(['Schulforms', 'LastSchulForms', 'Staats', 'Konfessions']);
         $antrags = $this->paginate($query);
@@ -186,4 +189,27 @@ class AntragsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function export(string $mode): Response
+    {
+        $this->request->allowMethod(['get']);
+
+        $service = new SchildExportService($this->fetchTable('Antrags'));
+
+        // ZIP bauen (enthält die 4 .dat Dateien in Windows-1252)
+        $zipBinary = $service->buildZip($mode);
+
+        // Daten als "gedownloadet" markieren (downloads++, lastDownload=now)
+        $service->markDownloaded($mode);
+
+        $filename = $mode === 'new'
+            ? 'schild_export_new.zip'
+            : 'schild_export_all.zip';
+
+        return $this->response
+            ->withType('application/zip')
+            ->withHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->withStringBody($zipBinary);
+    }
+
 }

@@ -11,9 +11,10 @@
         <table>
             <thead>
             <tr>
-                <th><?= $this->Paginator->sort('downloads') ?></th>
-                <th><?= $this->Paginator->sort('lastDownload') ?></th>
-                <th><?= $this->Paginator->sort('schulform_id', 'Bildungsgang') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+                <th><?= $this->Paginator->sort('downloads','#DL') ?></th>
+                <th><?= $this->Paginator->sort('lastDownload','LDL') ?></th>
+                <th><?= $this->Paginator->sort('schulform_id', 'BG') ?></th>
                 <th><?= $this->Paginator->sort('name', 'Nachname') ?></th>
                 <th><?= $this->Paginator->sort('vorname', 'Vorname') ?></th>
                 <th><?= $this->Paginator->sort('geschlecht') ?></th>
@@ -22,12 +23,26 @@
                 <th><?= $this->Paginator->sort('stadt') ?></th>
                 <th><?= $this->Paginator->sort('foerderBedarf', 'Förderbedarf') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+
             </tr>
             </thead>
             <tbody>
                 <?php foreach ($antrags as $antrag): ?>
                 <tr>
+                    <td class="actions" id="myactions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $antrag->id]) ?>
+                        <?= $this->Html->link(__('Print'),['action' => 'print', $antrag->id],
+                                ['target' => '_blank', 'rel' => 'noopener'] ) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $antrag->id]) ?>
+                        <?= $this->Form->postLink(
+                            __('Delete'),
+                            ['action' => 'delete', $antrag->id],
+                            [
+                                'method' => 'delete',
+                                'confirm' => __('Are you sure you want to delete # {0}?', $antrag->id),
+                            ]
+                        ) ?>
+                    </td>
                     <td><?= $this->Number->format($antrag->downloads) ?></td>
                     <td><?= $antrag->lastDownload ? $antrag->lastDownload->format('d.m.Y H:i') : '' ?></td>
 
@@ -43,20 +58,7 @@
                     <td><?= h($antrag->stadt) ?></td>
                     <td><?= h($antrag->foerderBedarf) ?></td>
                     <td><?= $antrag->created->format('d.m.Y H:i') ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $antrag->id]) ?>
-                        <?= $this->Html->link(__('Print'),['action' => 'print', $antrag->id],
-                                ['target' => '_blank', 'rel' => 'noopener'] ) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $antrag->id]) ?>
-                        <?= $this->Form->postLink(
-                            __('Delete'),
-                            ['action' => 'delete', $antrag->id],
-                            [
-                                'method' => 'delete',
-                                'confirm' => __('Are you sure you want to delete # {0}?', $antrag->id),
-                            ]
-                        ) ?>
-                    </td>
+
                 </tr>
                 <?php endforeach; ?>
             </tbody>
