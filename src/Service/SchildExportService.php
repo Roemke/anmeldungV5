@@ -71,6 +71,8 @@ final class SchildExportService
      * Exportiert "all" oder "new" (new = lastDownload IS NULL).
      *
      * @return array<string, string> Map: filename => binary content (Windows-1252)
+     * eventuell ein paar mal zu viel getrimmt, nicht schädlich und ich war etwas unkonzentriert
+     * beim generieren lassen :-)
      */
     public function buildFiles(string $mode): array
     {
@@ -353,6 +355,7 @@ final class SchildExportService
         return $converted !== false ? $converted : $utf8;
     }
 
+    //arbeitet per reference
     private function trimEntityStrings(object $entity): void
     {
         // Best effort: trim auf string properties, ohne harte Abhängigkeit von Entity-Klasse
