@@ -31,6 +31,7 @@ up the built-in webserver with:
 ```bash
 bin/cake server -p 8765
 ```
+ok, das läuft problemlos.
 
 Then visit `http://localhost:8765` to see the welcome page.
 
@@ -53,7 +54,9 @@ framework by default. You can, however, replace it with any other library or
 custom styles.
 
 ## Notizen - to check
-- Innodb sinnvoll?
-- schild 3 import, neue Möglichkeiten
+- Innodb sinnvoll? - ja, ist umgestellt und Zeichensätze in der Entwicklungsdb vereinheitlicht. Abgleich mit Produktivsystem noch nötig, dann Neu-Import in Produktivsystem
+- schild 3 import, neue Möglichkeiten (später)
 - ldap login nur für Verwaltung
-- debug ausschalten in app_local.php
+- debug ausschalten in app_local.php (ist ausgeschaltet, kann über env eingeschaltet werden, s.
+app_local.php)
+- Migration auf apache statt bin/cake server
