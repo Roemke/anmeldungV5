@@ -39,6 +39,10 @@ class AntragsController extends AppController
         }
         $antragToken = $session->read('antrag_token');
         $antrag = $this->fetchTable('Antrags')->newEmptyEntity();
+        //wenn folgendes nicht, dann anscheinend Default aus DB
+        if (!$this->request->is('post')) {
+            $antrag->foerderBedarf = '';
+        }
         // Lookup-Daten für das Formular
         $this->set([
             'antrag' => $antrag,

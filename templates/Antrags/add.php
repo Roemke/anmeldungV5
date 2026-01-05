@@ -129,6 +129,7 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
 ]) ?>
 <?= $this->Form->control('spaetaussiedler', [
     'legend' => 'Spätaussiedler',
+    'label' => 'Spätaussiedler',
     'type' => 'radio',
     'options' => ['J' => 'ja', 'N' => 'nein'],
 ]) ?>
@@ -137,6 +138,7 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
 
 <?= $this->Form->control('foerderBedarf', [
     'legend' => 'Förderbedarf / Inklusion',
+    'label' => 'Förderbedarf / Inklusion',
     'type' => 'radio',
     'options' => ['j' => 'ja', 'n' => 'nein'],
 ]) ?>
