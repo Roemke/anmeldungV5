@@ -83,7 +83,11 @@ footer.site-footer > div {
 .admin-content {
     padding: 1rem;
 }
-#myactions a {
+#myactions  {
     font-size: 75%;
     padding: 0pt;
 }
+#myactions  a { /*nochmal explizit*/
+    padding: 0pt;
+}
+

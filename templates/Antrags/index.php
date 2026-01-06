@@ -42,6 +42,7 @@
                                 'confirm' => __('Are you sure you want to delete # {0}?', $antrag->id),
                             ]
                         ) ?>
+                        (#<?=  $antrag->id ?>)
                     </td>
                     <td><?= $this->Number->format($antrag->downloads) ?></td>
                     <td><?= $antrag->lastDownload ? $antrag->lastDownload->format('d.m.Y H:i') : '' ?></td>
