@@ -27,7 +27,7 @@ Beratungstermine werden telefonisch über das Sekretariat vergeben. Wir freuen u
 </p>
 
 <p>
-<a href="https://www.bk-rheinbach.net/GFS-Anmeldezeitraeume26-27.pdf" target="_blank">
+<a href="./GFS-Anmeldezeitraeume26-27.pdf" target="_blank">
 Anmeldezeiträume für das Schuljahr 2026/2027 auf einen Blick.
 </a>
 </p>
