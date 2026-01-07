@@ -37,7 +37,7 @@ Bitte beachten Sie beim Ausfüllen folgende Punkte:
 <ul>
   <li> Sie können sich nur für <strong>einen Bildungsgang</strong> anmelden. Sollten Sie an mehreren
     Bildungsgängen interessiert sein, führen Sie dies bitte unter Anmerkungen auf.</li>
-  <li> Alle Felder, die mit einem Sternchen versehen sind, müssen ausgefüllt werden.</li>
+  <li> Füllen Sie bitte alle Felder aus, lediglich eine zweite erziehungsberechtigte Person ist optional.</li>
   <li> Die <strong>Online-Anmeldung</strong> ist der erste Schritt zu uns. Daneben benötigen wir den von Ihnen (bei nicht Volljährigen auch von
     Erziehungsberechtigten) unterschriebenen Ausdruck dieser Online-Anmeldung. <strong>Die Seite zum Ausdruck erhalten Sie nach dem Absenden des Antrags.</strong>
     Mit der Unterschrift bestätigen Sie, dass Ihre Angaben korrekt sind und Sie darüber informiert sind, dass bei fehlenden
