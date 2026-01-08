@@ -118,6 +118,29 @@ class AntragsController extends AppController
     }
 
 
+    //reset download counter
+
+    public function resetDownload(int $id)
+    {
+        // Nur POST erlauben (kein GET!)
+        $this->request->allowMethod(['post']);
+
+        $antrag = $this->Antrags->get($id);
+        if (!$antrag) {
+            throw new NotFoundException();
+        }
+
+        $antrag->downloads = 0;
+        $antrag->lastDownload = null;
+
+        $this->Antrags->saveOrFail($antrag);
+
+        $this->Flash->success('Download-Zähler zurückgesetzt.');
+
+        return $this->redirect($this->referer());
+    }
+
+
     //folgendes per cake bake generiert, evtl. anpassen
     /**
      * Index method

@@ -120,7 +120,7 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
 </fieldset>
 
 <fieldset>
-<?= $this->Form->control('familienstand', ['label' => 'Familienstand']) ?>
+<?= $this->Form->control('familienstand', ['label' => 'Familienstand','placeholder'=>'z.B. ledig']) ?>
 <?= $this->Form->control('konfession_id', [
     'label' => 'Konfession',
     'type' => 'select',
@@ -173,6 +173,7 @@ Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und/oder die Beratungs-
 ]) ?>
 <?= $this->Form->control('berufsausbildung_abgeschlossen', [
     'label' => 'abgeschlossene Berufsausbildung als',
+    'placeholder' => 'Feld ggf. leer lassen'
 ]) ?>
 </fieldset>
 

@@ -42,6 +42,13 @@
                                 'confirm' => __('Are you sure you want to delete # {0}?', $antrag->id),
                             ]
                         ) ?>
+                        <?= $this->Form->postLink(
+                            'Reset DL',
+                            ['action' => 'resetDownload', $antrag->id],
+                            [
+                                'confirm' => 'Download-Zähler wirklich zurücksetzen?',
+                            ]
+                        ) ?>
                         (#<?=  $antrag->id ?>)
                     </td>
                     <td><?= $this->Number->format($antrag->downloads) ?></td>
