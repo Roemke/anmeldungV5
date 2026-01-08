@@ -8,6 +8,7 @@ use Cake\I18n\FrozenTime;
 use Cake\ORM\Table;
 use Cake\Utility\Text;
 use ZipArchive;
+use Cake\Log\Log; 
 
 /**
  * SCHILD-Export Service
@@ -112,6 +113,7 @@ final class SchildExportService
         foreach ($antrags as $a) {
             // Defensive: trim wie Altcode array_walk_recursive
             $this->trimEntityStrings($a);
+
 
             // ========== BASIS ==========
             $b = [];
@@ -306,24 +308,65 @@ final class SchildExportService
         };
     }
 
+/*
     private function formatGebDat(mixed $geburtsdatum): string
     {
         // Altcode: DateTime($antrag['Antrag']['geburtsdatum'])->format("d.m.Y")
+        
         if ($geburtsdatum === null || $geburtsdatum === '') {
+            Log::debug(sprintf("leeres datum"));
             return '';
         }
-
+        Log::debug(sprintf("uebergeben %s",var_export($geburtsdatum,true)));  
+        
         // Cake kann Date/Time Objekte liefern; alles zulassen
         try {
             if ($geburtsdatum instanceof \DateTimeInterface) {
+                Log::debug("Datum ->format" .  $geburtsdatum->format('d.m.Y'));
                 return $geburtsdatum->format('d.m.Y');
             }
-
+            $s = (string)$geburtsdatum;
+        Log::debug(sprintf(
+            "toString=%s len=%d hex=%s",
+            var_export($s, true),
+            strlen($s),
+            bin2hex(substr($s, 0, 64))
+        ));
+             Log::debug("Datum ueber neues Objekt " . (new \DateTime((string)$geburtsdatum))->format('d.m.Y')  );      
             return (new \DateTime((string)$geburtsdatum))->format('d.m.Y');
+            //mist, das war der Fehler (string)$geburtsdatum ist unsauber
+            //2026-01-08 13:34:23 debug: toString='03.08.07' len=8 hex=30332e30382e3037
+            //2026-01-08 13:34:23 debug: Datum ueber neues Objekt 08.01.2026
+            //2026-01-08 13:34:23 debug: toString='28.09.08' len=8 hex=32382e30392e3038
+            //2026-01-08 13:34:23 debug: Datum ueber neues Objekt 28.09.2008
         } catch (\Throwable) {
+                    Log::debug(sprintf("leeres datum"));
+
             return '';
         }
     }
+*/
+private function formatGebDat(mixed $geburtsdatum): string
+{
+    if ($geburtsdatum === null || $geburtsdatum === '') {
+        return '';
+    }
+
+    if ($geburtsdatum instanceof \Cake\I18n\Date) {
+        return $geburtsdatum->format('d.m.Y');
+    }
+
+    if ($geburtsdatum instanceof \DateTimeInterface) {
+        return $geburtsdatum->format('d.m.Y');
+    }
+
+    // nur für echte Strings
+    $dt = \DateTimeImmutable::createFromFormat('d.m.y', (string)$geburtsdatum);
+    return $dt ? $dt->format('d.m.Y') : '';
+}
+
+
+
 
     private function sanitizeBemerkungen(string $text): string
     {
