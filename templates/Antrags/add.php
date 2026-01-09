@@ -1,9 +1,8 @@
 <?php
 $this->Html->css('add.antrag', ['block' => true]);
-$this->Html->css('add.antrag.print', ['media' => 'print', 'block' => true]);
 
 $this->Html->script(
-    ['jquery.min', 'show_techniker_question', 'show_foerder', 'show_gtaNote'],
+    ['show_foerder', 'show_gtaNote'],
     ['block' => true]
 );
 ?>

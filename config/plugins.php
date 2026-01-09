@@ -31,6 +31,6 @@ return [
     'DebugKit' => ['onlyDebug' => true],
     'Bake' => ['onlyCli' => true, 'optional' => true],
     'Migrations' => ['onlyCli' => true],
-
+     //evtl bei DebugKit forceEnable => true damit immer sichtbar 
     // Additional plugins here
 ];

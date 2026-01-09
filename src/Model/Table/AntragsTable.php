@@ -86,6 +86,11 @@ final class AntragsTable extends Table
         //bemerkungen am Ende
         $validator
             ->allowEmptyString('abschluss');
+            
+        //konfession 
+        $validator
+            ->requirePresence('konfession_id', 'create')
+            ->notEmptyString('konfession_id', 'Bitte Konfession eintragen');
 
         return $validator;
     }
