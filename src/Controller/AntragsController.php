@@ -7,7 +7,8 @@ use Cake\Event\EventInterface;
 use Cake\Utility\Security;
 use App\Service\SchildExportService;
 use Cake\Http\Response;
-
+use App\Controller\Traits\IndexContextTrait; //könnte man auch in App-Controller packen
+use Cake\Http\Exception\NotFoundException;
 /**
  * Antrags Controller
  *
@@ -15,6 +16,7 @@ use Cake\Http\Response;
  */
 class AntragsController extends AppController
 {
+    use IndexContextTrait;
     //zugang ohne login erlauben, Antrag einreichen
     public function beforeFilter(EventInterface $event)
     {
@@ -137,7 +139,7 @@ class AntragsController extends AppController
 
         $this->Flash->success('Download-Zähler zurückgesetzt.');
 
-        return $this->redirect($this->referer());
+        return $this->redirectBackToIndex();
     }
 
 
@@ -186,7 +188,7 @@ class AntragsController extends AppController
             if ($this->Antrags->save($antrag)) {
                 $this->Flash->success(__('The antrag has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirectBackToIndex();
             }
             $this->Flash->error(__('The antrag could not be saved. Please, try again.'));
         }
@@ -214,7 +216,7 @@ class AntragsController extends AppController
             $this->Flash->error(__('The antrag could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return  $this->redirectBackToIndex();
     }
 
     public function export(string $mode): Response

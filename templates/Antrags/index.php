@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Antrag> $antrags
  */
+/* back wird über den controller geseezt */
 ?>
+
 <div class="antrags index content">
     <?= $this->Html->link(__('New Antrag'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Antrags') ?></h3>
@@ -30,13 +32,17 @@
                 <?php foreach ($antrags as $antrag): ?>
                 <tr>
                     <td class="actions" id="myactions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $antrag->id]) ?>
-                        <?= $this->Html->link(__('Print'),['action' => 'print', $antrag->id],
-                                ['target' => '_blank', 'rel' => 'noopener'] ) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $antrag->id]) ?>
+                        <?= $this->Html->link(__('View'),
+                        ['action' => 'view', $antrag->id, '?' => ['back' => $back]]) ?>
+                        <?= $this->Html->link(__('Print'),
+                                  ['action' => 'print', $antrag->id, '?' => ['back' => $back]],
+                                ['target' => '_blank', 'rel' => 'noopener']
+                                ) ?>
+                        <?= $this->Html->link(__('Edit'),
+                        ['action' => 'edit', $antrag->id, '?' => ['back' => $back]]) ?>
                         <?= $this->Form->postLink(
                             __('Delete'),
-                            ['action' => 'delete', $antrag->id],
+                            ['action' => 'delete', $antrag->id, '?' => ['back' => $back]],
                             [
                                 'method' => 'delete',
                                 'confirm' => __('Are you sure you want to delete # {0}?', $antrag->id),
@@ -44,10 +50,8 @@
                         ) ?>
                         <?= $this->Form->postLink(
                             'Reset DL',
-                            ['action' => 'resetDownload', $antrag->id],
-                            [
-                                'confirm' => 'Download-Zähler wirklich zurücksetzen?',
-                            ]
+                            ['action' => 'resetDownload', $antrag->id, '?' => ['back' => $back]],
+                            ['confirm' => 'Download-Zähler wirklich zurücksetzen?']
                         ) ?>
                         (#<?=  $antrag->id ?>)
                     </td>
