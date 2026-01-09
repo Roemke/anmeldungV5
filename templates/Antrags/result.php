@@ -108,9 +108,16 @@ $this->Html->script('print_button', ['block' => true]);
 <?php endif; ?>
 </p>
 
+<?php if ($antrag->aufmerksam): ?>
+<div id="idBeratung">
+  bisherige Beratung: 
+  <?= nl2br(h($antrag->aufmerksam)) ?>
+</div>
+<?php endif; ?>
+
 <?php if ($antrag->abschluss): ?>
 <div id="idAnmerkungen">
-  Anmerkungen:<br>
+  Anmerkungen:
   <?= nl2br(h($antrag->abschluss)) ?>
 </div>
 <?php endif; ?>
@@ -134,7 +141,13 @@ $this->Html->script('print_button', ['block' => true]);
   <?php endif; ?>
 </ul>
 
-<?php if ($antrag->staat->statistikkrz !== '000'): ?>
+<?php if ($antrag->staat->StatistikKrz !== '000'):   
+  $staatString = var_export($antrag->staat->StatistikKrz,true);
+?>
+<script>
+  console.log("We have " + "<?php echo $staatString; ?>");
+</script>
+
 <strong>Bei internationalen Bewerbern zusätzlich:</strong>
 <ul>
   <li>gültige Aufenthaltsgenehmigung</li>

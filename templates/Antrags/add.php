@@ -21,7 +21,7 @@ Online Anmeldeformular für alle Bildungsgänge an der Glasfachschule NRW in Rhe
 <div id="idContainerIntro">
 <div>
 <p>
-Wir empfehlen Ihnen, sich vor der Anmeldung beraten zu lassen. Bringen Sie dazu gerne Ihre Unterlagen
+Bitte lassen Sie sich vor Ihrer Anmeldung von uns beraten. Bringen Sie dazu gerne Ihre Unterlagen
 (z.B. Berufswahlpass) aus dem Programm „Kein Abschluss ohne Anschluss“ (KAoA) mit.
 Beratungstermine werden telefonisch über das Sekretariat vergeben. Wir freuen uns auf Ihren Anruf!
 </p>
@@ -50,8 +50,16 @@ Bitte beachten Sie beim Ausfüllen folgende Punkte:
 </div>
 </div>
 
+<div>
+<?= $this->Form->control('aufmerksam', [
+    'type' => 'textarea',
+    'label' => 'Welche Form der Beratung an unserer Schule haben Sie bisher in Anspruch genommen?',
+]) ?>
+</div>
+
+
 <?= $this->Form->control('schulform_id', [
-    'label' => 'Bildungsgang',
+    'label' => 'Ihr gewünschter Bildungsgang',
     'type' => 'select',
     'options' => $schulforms,
     'empty' => 'Bitte wählen',
@@ -63,11 +71,12 @@ Bitte beachten Sie beim Ausfüllen folgende Punkte:
 <ul>
 <li>ausführlicher tabellarischer Lebenslauf mit Unterschrift</li>
 <li>beglaubigte Kopie des letzten Zeugnisses (in der Regel Halbjahreszeugnis)</li>
-<li>beglaubigte Kopie des Abschlusszeugnisses</li>
+<li>beglaubigte Kopie des Abschlusszeugnisses (sobald es vorliegt, spätestens am ersten Schultag)</li>
 <li id="gtaUnterlagenAddOn" class="invisible">
 <strong>nur</strong> Berufsfachschule Gestaltung: selbstgestaltete Arbeit(en)
 </li>
 </ul>
+Sie können Zeugnisse auch persönlich im Original vorlegen, z.B. an den Beratungsterminen.
 </div>
 
 <p>
@@ -158,10 +167,6 @@ Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und/oder die Beratungs-
 </div>
 </fieldset>
 
-<?= $this->Form->control('aufmerksam', [
-    'type' => 'textarea',
-    'label' => 'Welche Form der Beratung an unserer Schule haben Sie bisher in Anspruch genommen?',
-]) ?>
 
 <fieldset class="clFieldSetAlign">
 <?= $this->Form->control('letzeschule', ['label' => 'Zuletzt besuchte Schule']) ?>
