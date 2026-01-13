@@ -110,14 +110,19 @@ div.antrag.form .radio label
 }
 #idAntragBeigefuegt {
 	margin-top: 0em;
+	margin-bottom: 4em;
 }
 #idAntragBeigefuegt p {
 	margin-top: 0em;
 	margin-bottom: 0.5em;
 }
 
-address {
-display: inline-block;
+#idAntragBeigefuegt address {
+margin-left: auto;
+margin-right: auto;
+width: fit-content;
+margin-bottom: 1em;
+
 }
 p.inlineBlock {
 display: inline-block;
@@ -130,17 +135,9 @@ display: inline-block;
 }
 
 /* Erzieherfelder */
-#idSpanErzieher1Title , #idSpanErzieher2Title {
-    color								:   #100020;
-  }
-
-  #idDivErzieher1 , #idDivErzieher2 {
-      padding						: 1ex 3ex;
-      margin-left					: 2ex	;
-      border						: 1px solid grey;
-      width						: 28em;
-      display						: inline-block;
-  }
+#idDivErz > fieldset {
+  margin-right: 2em;
+}
 
   .btn-submit {
     background-color: #2e7d32; /* sattes Grün */

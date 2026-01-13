@@ -11,13 +11,11 @@ $this->Html->script(
 
 <?= $this->Form->create($antrag) ?>
 
-<fieldset>
-<legend>
+<div>
 Gestalten Sie mit uns Ihre berufliche Zukunft – wir beraten Sie gerne!<br>
 Online Anmeldeformular für alle Bildungsgänge an der Glasfachschule NRW in Rheinbach
-</legend>
+</div>
 
-<div id="idContainerIntro">
 <div>
 <p>
 Bitte lassen Sie sich vor Ihrer Anmeldung von uns beraten. Bringen Sie dazu gerne Ihre Unterlagen
@@ -65,30 +63,6 @@ Bitte beachten Sie beim Ausfüllen folgende Punkte:
     'required' => true,
 ]) ?>
 
-<div id="idAntragBeigefuegt">
-<p>Dem Ausdruck müssen die folgenden Unterlagen beigelegt werden:</p>
-<ul>
-<li>ausführlicher tabellarischer Lebenslauf mit Unterschrift</li>
-<li>beglaubigte Kopie des letzten Zeugnisses (in der Regel Halbjahreszeugnis)</li>
-<li>beglaubigte Kopie des Abschlusszeugnisses (sobald es vorliegt, spätestens am ersten Schultag)</li>
-<li id="gtaUnterlagenAddOn" class="invisible">
-<strong>nur</strong> Berufsfachschule Gestaltung: selbstgestaltete Arbeit(en)
-</li>
-</ul>
-Sie können Zeugnisse auch persönlich im Original vorlegen, z.B. an den Beratungsterminen.
-</div>
-
-<p>
-Bitte senden Sie die kompletten Unterlagen
-an:
-</p>
-
-<address>
-Glasfachschule NRW<br>
-Zu den Fichten 19<br>
-53359 Rheinbach
-</address>
-</div>
 
 <fieldset class="clFieldSetAlign">
 <?= $this->Form->control('name', ['label' => 'Nachname']) ?>
@@ -112,7 +86,6 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
     'type' => 'date',
 ]) ?>
 <?= $this->Form->control('geschlecht', [
-    'legend' => 'Geschlecht',
     'type' => 'radio',
     'options' => ['m' => 'männlich', 'w' => 'weiblich', 'd' => 'divers'],
 ]) ?>
@@ -128,7 +101,9 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
 </fieldset>
 
 <fieldset>
+<!--
 <?= $this->Form->control('familienstand', ['label' => 'Familienstand','placeholder'=>'z.B. ledig']) ?>
+-->
 <?= $this->Form->control('konfession_id', [
     'label' => 'Konfession',
     'type' => 'select',
@@ -136,7 +111,6 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
     'empty' => 'Bitte wählen',
 ]) ?>
 <?= $this->Form->control('spaetaussiedler', [
-    'legend' => 'Spätaussiedler',
     'label' => 'Spätaussiedler',
     'type' => 'radio',
     'options' => ['J' => 'ja', 'N' => 'nein'],
@@ -145,7 +119,6 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
 
 
 <?= $this->Form->control('foerderBedarf', [
-    'legend' => 'Förderbedarf / Inklusion',
     'label' => 'Förderbedarf / Inklusion',
     'type' => 'radio',
     'options' => ['j' => 'ja', 'n' => 'nein'],
@@ -161,7 +134,8 @@ bei internationalen Bewerbern benötigen wir zusätzlich:
 <?= $this->Form->control('foeHK', ['type' => 'checkbox', 'label' => 'HK (Hören und Kommunikation)']) ?>
 <?= $this->Form->control('foeSE', ['type' => 'checkbox', 'label' => 'SE (Sehen)']) ?>
 <?= $this->Form->control('foeKME', ['type' => 'checkbox', 'label' => 'KME (körperliche und motorische Entwicklung)']) ?>
-Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und/oder die Beratungs-Lehrkräfte.</p>
+<p>Nehmen Sie bitte zur Beratung Kontakt zu unserer Schulsozialarbeit und/oder den Beratungs-Lehrkräften auf, z.B. über
+<a href="mailto:inklusion@glasfachschule.nrw">inklusion@glasfachschule.nrw</a>.</p>
 </div>
 </div>
 </fieldset>
@@ -175,28 +149,29 @@ Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und/oder die Beratungs-
     'options' => $lastSchoolForms,
     'empty' => 'Bitte wählen',
 ]) ?>
+<!--
 <?= $this->Form->control('berufsausbildung_abgeschlossen', [
     'label' => 'abgeschlossene Berufsausbildung als',
     'placeholder' => 'Feld ggf. leer lassen'
 ]) ?>
+-->
 </fieldset>
 
-<div>
+<div id="idDivErz">
 <fieldset class="clFieldSetAlign">
 <span>Daten des Erziehungsberechtigten</span>
 <?= $this->Form->control('e1name', ['label' => 'Nachname']) ?>
 <?= $this->Form->control('e1vorname', ['label' => 'Vorname']) ?>
+<?= $this->Form->control('e1telefon', ['label' => 'Telefon']) ?>
+<?= $this->Form->control('e1geschlecht', [
+    'label' => 'Geschlecht',
+    'type' => 'radio',
+    'options' => ['m' => 'männlich', 'w' => 'weiblich', 'd' => 'divers'],
+]) ?>
 <?= $this->Form->control('e1strasse', ['label' => 'Straße']) ?>
 <?= $this->Form->control('e1hausnummer', ['label' => 'Hausnummer']) ?>
 <?= $this->Form->control('e1plz', ['label' => 'Postleitzahl']) ?>
 <?= $this->Form->control('e1stadt', ['label' => 'Ort']) ?>
-<?= $this->Form->control('e1telefon', ['label' => 'Telefon']) ?>
-<?= $this->Form->control('e1geschlecht', [
-    'label' => 'Geschlecht',
-    'legend' => 'Geschlecht',
-    'type' => 'radio',
-    'options' => ['m' => 'männlich', 'w' => 'weiblich', 'd' => 'divers'],
-]) ?>
 </fieldset>
 
 <fieldset class="clFieldSetAlign">
@@ -206,7 +181,6 @@ Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und/oder die Beratungs-
 <?= $this->Form->control('e2telefon', ['label' => 'Telefon']) ?>
 <?= $this->Form->control('e2geschlecht', [
     'label' => 'Geschlecht',
-    'legend' => 'Geschlecht',
     'type' => 'radio',
     'options' => ['m' => 'männlich', 'w' => 'weiblich', 'd' => 'divers'],
 ]) ?>
@@ -214,15 +188,9 @@ Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und/oder die Beratungs-
 </div>
 <?= $this->Form->control('abschluss', [
     'type' => 'textarea',
-    'label' => 'sonstige Anmerkungen',
+    'label' => 'sonstige Anmerkungen, z.B. Bildungsgang-Alternative, abgeschlossene Berufsausbildung, ...',
 ]) ?>
 
-<p>
-Nach dem Absenden erhalten Sie eine Ergebnisseite mit den wesentlichen Daten.
-Drucken Sie diese Seite bitte aus und senden Sie den unterschriebenen Ausdruck ein.
-</p>
-
-</fieldset>
 
 <?= $this->Form->hidden('antrag_token', [
     'value' => $antragToken,
@@ -232,4 +200,28 @@ Drucken Sie diese Seite bitte aus und senden Sie den unterschriebenen Ausdruck e
 <?= $this->Form->button('Absenden', ['class' => 'btn-submit'] ) ?>
 <?= $this->Form->end() ?>
 
+<div id="idAntragBeigefuegt">
+<p>
+<strong>Nach dem Absenden</strong>  erhalten Sie eine Ergebnisseite mit den wesentlichen Daten.
+Drucken Sie diese Seite bitte aus und senden Sie diese mit Ihren weiteren Unterlagen an
+</p>
+<address>
+Glasfachschule NRW<br>
+Zu den Fichten 19<br>
+53359 Rheinbach
+</address>
+
+<p>Dem Ausdruck müssen die folgenden Unterlagen beigelegt werden:</p>
+<ul>
+<li>ausführlicher tabellarischer Lebenslauf mit Unterschrift</li>
+<li>beglaubigte Kopie des letzten Zeugnisses (in der Regel Halbjahreszeugnis)</li>
+<li id="gtaUnterlagenAddOn" class="invisible">
+<strong>nur</strong> Berufsfachschule Gestaltung: selbstgestaltete Arbeit(en)
+</li>
+</ul>
+<p>Eine beglaubigte Kopie des Abschlusszeugnisses können Sie nachreichen, diese muss spätestens am ersten Schultag vorliegen. </p>
+
+<p>Sie können Zeugnisse auch persönlich im Original vorlegen, z.B. an den Beratungsterminen.</p>
 </div>
+</div>
+

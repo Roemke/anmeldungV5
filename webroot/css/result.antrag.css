@@ -97,3 +97,13 @@ ul {
   width: 10em;
   text-align: center;
 }
+
+#idWeitereUnterlagen li {
+  margin: 0em 0em; 
+}
+#idWeitereUnterlagen ul {
+  margin-bottom: 0pt;
+}
+#idWeitereUnterlagen p {
+  margin: 0.5em 0em; 
+}
