@@ -76,7 +76,8 @@ $this->Html->script('print_button', ['block' => true]);
         <div class="framed"><span><?= $sign ?></span></div>
       <?php endforeach; ?>
     </div><!-- ende foerderbereich -->
-    <p>Besuchen Sie zur Beratung bitte unsere Schulsozialarbeit und / oder die Beratungs-Lehrkräfte.</p>
+    <p>Nehmen Sie bitte zur Beratung Kontakt zu unserer Schulsozialarbeit und/oder den Beratungs-Lehrkräften auf, z.B. über
+    <a href="mailto:inklusion@glasfachschule.nrw">inklusion@glasfachschule.nrw</a>.</p>
     <div id="inklBeratung">
         <div>Inklusionsberatung hat stattgefunden</div>
         <div id="idParaphe">(Paraphe)</div>
