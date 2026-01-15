@@ -40,7 +40,8 @@ Bitte beachten Sie beim Ausfüllen folgende Punkte:
     Mit der Unterschrift bestätigen Sie, dass Ihre Angaben korrekt sind und Sie darüber informiert sind, dass bei fehlenden
     Unterlagen keine Bearbeitung erfolgt.</li>
   <li>Geben Sie Ihre <strong>Namen und ihr Geschlecht laut Personalausweis</strong> an. Sollten Sie
-    eine Namensänderung laut NamÄndG (Namensänderungsgesetz) oder laut TSG (Transsexuellengesetz) anstreben, so informieren Sie bitte das
+    eine Namensänderung laut NamÄndG (Namensänderungsgesetz), TSG (Transsexuellengesetz) oder SBGG (Gesetz über die Selbstbestimmung 
+    in Bezug auf den Geschlechtseintrag) anstreben, so informieren Sie bitte das
     Sekretariat der Schule.</li>
 </ul>
 
