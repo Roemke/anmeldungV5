@@ -214,7 +214,7 @@
             <div class="text">
                 <strong><?= __('Abschluss') ?></strong>
                 <blockquote>
-                    <?= $this->Text->autoParagraph(h($antrag->abschluss)); ?>
+                    <?= $this->Text->autoParagraph(h($antrag->abschluss ?? '' )); ?>
                 </blockquote>
             </div>
             <div class="text">
